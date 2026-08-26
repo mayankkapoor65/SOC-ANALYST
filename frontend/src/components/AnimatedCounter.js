@@ -1,22 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function AnimatedCounter({ value, duration = 800, decimals = 0 }) {
   const [display, setDisplay] = useState(0);
+  const displayRef = useRef(0);
 
   useEffect(() => {
     const target = Number(value) || 0;
-    const start = display;
+    const start = displayRef.current;
     const startTime = performance.now();
+    let frameId;
 
     const tick = (now) => {
       const progress = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = start + (target - start) * eased;
+      displayRef.current = current;
       setDisplay(current);
-      if (progress < 1) requestAnimationFrame(tick);
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick);
+      }
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    frameId = requestAnimationFrame(tick);
+    return () => {
+      if (frameId) cancelAnimationFrame(frameId);
+    };
   }, [value, duration]);
 
   return (
