@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-dotenv
+pydantic
+pydantic[email]
+email-validator
+requests
+scikit-learn
+numpy
+joblib
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==4.0.1
+shap

@@ -1,0 +1,38 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - AUTH_REQUIRED=true
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-docker-dev-secret-change-in-production}
+      - JWT_EXPIRE_MINUTES=60
+      - CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+      - DB_NAME=/app/data/security_logs.db
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-SentinelDocker2026!}
+    volumes:
+      - backend_data:/app/data
+      - ./models:/app/models
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  backend_data:

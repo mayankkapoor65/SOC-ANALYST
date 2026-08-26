@@ -1,0 +1,19 @@
+[
+  {"ip": "185.200.10.15", "threat_score": 95, "category": "Botnet", "confidence": 0.91},
+  {"ip": "103.21.244.0", "threat_score": 88, "category": "Scanner", "confidence": 0.87},
+  {"ip": "45.33.32.156", "threat_score": 92, "category": "Botnet", "confidence": 0.89},
+  {"ip": "192.168.100.55", "threat_score": 45, "category": "Suspicious", "confidence": 0.62},
+  {"ip": "10.0.0.99", "threat_score": 30, "category": "Suspicious", "confidence": 0.55},
+  {"ip": "203.0.113.42", "threat_score": 78, "category": "Malicious", "confidence": 0.84},
+  {"ip": "198.51.100.77", "threat_score": 82, "category": "Malicious", "confidence": 0.86},
+  {"ip": "172.16.254.1", "threat_score": 65, "category": "Suspicious", "confidence": 0.71},
+  {"ip": "91.134.205.10", "threat_score": 97, "category": "Botnet", "confidence": 0.94},
+  {"ip": "176.32.98.166", "threat_score": 90, "category": "Scanner", "confidence": 0.88},
+  {"ip": "54.239.28.138", "threat_score": 55, "category": "Suspicious", "confidence": 0.68},
+  {"ip": "52.94.76.225", "threat_score": 40, "category": "Suspicious", "confidence": 0.60},
+  {"ip": "77.88.55.88", "threat_score": 85, "category": "Malicious", "confidence": 0.83},
+  {"ip": "185.220.101.45", "threat_score": 93, "category": "Botnet", "confidence": 0.90},
+  {"ip": "104.244.72.13", "threat_score": 75, "category": "Scanner", "confidence": 0.79},
+  {"ip": "Russia", "threat_score": 80, "category": "Malicious", "confidence": 0.85, "location": "Russia"},
+  {"ip": "China", "threat_score": 78, "category": "Malicious", "confidence": 0.83, "location": "China"}
+]

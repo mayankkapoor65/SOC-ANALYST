@@ -1,0 +1,234 @@
+[
+  {
+    "description": "Normal business login — establishes baseline activity",
+    "scenario": "normal",
+    "expected": "risk_score=20, anomaly=false",
+    "user_id": "demo_alice",
+    "event_type": "login",
+    "location": "India",
+    "device": "Laptop"
+  },
+  {
+    "description": "Normal mobile login — low-risk event",
+    "scenario": "normal",
+    "expected": "risk_score=20, appears in live feed",
+    "user_id": "demo_bob",
+    "event_type": "login",
+    "location": "USA",
+    "device": "Mobile"
+  },
+  {
+    "description": "Normal evening login",
+    "scenario": "normal",
+    "expected": "risk_score=20",
+    "user_id": "demo_grace",
+    "event_type": "login",
+    "location": "USA",
+    "device": "Mobile"
+  },
+  {
+    "description": "Establish baseline for account takeover demo user",
+    "scenario": "baseline",
+    "expected": "typical_device=Laptop stored in user_baselines",
+    "user_id": "demo_takeover",
+    "event_type": "login",
+    "location": "India",
+    "device": "Laptop"
+  },
+  {
+    "description": "Baseline login 2/4 for demo_takeover",
+    "scenario": "baseline",
+    "user_id": "demo_takeover",
+    "event_type": "login",
+    "location": "India",
+    "device": "Laptop"
+  },
+  {
+    "description": "Baseline login 3/4 for demo_takeover",
+    "scenario": "baseline",
+    "user_id": "demo_takeover",
+    "event_type": "login",
+    "location": "India",
+    "device": "Laptop"
+  },
+  {
+    "description": "Baseline login 4/4 for demo_takeover",
+    "scenario": "baseline",
+    "user_id": "demo_takeover",
+    "event_type": "login",
+    "location": "India",
+    "device": "Laptop"
+  },
+  {
+    "description": "Credential stuffing — failed attempt 1/2",
+    "scenario": "credential_stuffing",
+    "expected": "Part of failed-failed-success chain",
+    "user_id": "demo_stuff",
+    "event_type": "failed_login",
+    "location": "USA",
+    "device": "Laptop"
+  },
+  {
+    "description": "Credential stuffing — failed attempt 2/2",
+    "scenario": "credential_stuffing",
+    "user_id": "demo_stuff",
+    "event_type": "failed_login",
+    "location": "USA",
+    "device": "Laptop"
+  },
+  {
+    "description": "Credential stuffing — successful login after failures",
+    "scenario": "credential_stuffing",
+    "expected": "Correlation alert: Credential Stuffing for demo_stuff",
+    "user_id": "demo_stuff",
+    "event_type": "login",
+    "location": "USA",
+    "device": "Laptop"
+  },
+  {
+    "description": "Impossible travel — login from USA",
+    "scenario": "impossible_travel",
+    "expected": "First location in travel chain",
+    "user_id": "demo_travel",
+    "event_type": "login",
+    "location": "USA",
+    "device": "Laptop"
+  },
+  {
+    "description": "Impossible travel — login from Russia (high-risk country)",
+    "scenario": "impossible_travel",
+    "expected": "risk_score=60+, threat_intel match on location",
+    "user_id": "demo_travel",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Laptop"
+  },
+  {
+    "description": "Impossible travel — login from China triggers correlation",
+    "scenario": "impossible_travel",
+    "expected": "Correlation alert: Impossible Travel for demo_travel",
+    "user_id": "demo_travel",
+    "event_type": "login",
+    "location": "China",
+    "device": "Laptop"
+  },
+  {
+    "description": "Threat intelligence match — known botnet IP",
+    "scenario": "threat_intel",
+    "expected": "threat_intel in response: Botnet, score 95",
+    "user_id": "demo_threat",
+    "event_type": "login",
+    "location": "India",
+    "device": "Laptop",
+    "source_ip": "185.200.10.15"
+  },
+  {
+    "description": "High-risk country login — Russia",
+    "scenario": "high_risk",
+    "expected": "risk_score=60, location-based elevation",
+    "user_id": "demo_eve",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Laptop",
+    "source_ip": "103.21.244.0"
+  },
+  {
+    "description": "ML anomaly candidate — extreme risk combination 1/3",
+    "scenario": "ml_anomaly",
+    "expected": "ml_anomaly=true, SHAP explanation generated",
+    "user_id": "demo_ml",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Unknown Device",
+    "source_ip": "91.134.205.10"
+  },
+  {
+    "description": "ML anomaly candidate — extreme risk combination 2/3",
+    "scenario": "ml_anomaly",
+    "user_id": "demo_ml",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Unknown Device",
+    "source_ip": "91.134.205.10"
+  },
+  {
+    "description": "ML anomaly candidate — triggers HIGH alert (hybrid_risk >= 80)",
+    "scenario": "ml_anomaly",
+    "expected": "Alert created, MITRE mapping applied",
+    "user_id": "demo_ml",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Unknown Device",
+    "source_ip": "91.134.205.10"
+  },
+  {
+    "description": "Account takeover — new device login (step 1 of chain)",
+    "scenario": "account_takeover",
+    "expected": "Device differs from baseline (Laptop → Unknown Device)",
+    "user_id": "demo_takeover",
+    "event_type": "login",
+    "location": "India",
+    "device": "Unknown Device"
+  },
+  {
+    "description": "Account takeover — high-risk login (step 2 of chain)",
+    "scenario": "account_takeover",
+    "expected": "hybrid_risk_score >= 70",
+    "user_id": "demo_takeover",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Unknown Device",
+    "source_ip": "185.220.101.45"
+  },
+  {
+    "description": "Account takeover — privileged access (step 3 of chain)",
+    "scenario": "account_takeover",
+    "expected": "Correlation alert: Account Takeover CRITICAL for demo_takeover",
+    "user_id": "demo_takeover",
+    "event_type": "admin_access",
+    "location": "Russia",
+    "device": "Unknown Device"
+  },
+  {
+    "description": "Insider threat — high-risk event 1/5",
+    "scenario": "insider_threat",
+    "expected": "Builds toward 5 high-risk events in 24h",
+    "user_id": "demo_insider",
+    "event_type": "login",
+    "location": "China",
+    "device": "Unknown Device"
+  },
+  {
+    "description": "Insider threat — high-risk event 2/5",
+    "scenario": "insider_threat",
+    "user_id": "demo_insider",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Unknown Device"
+  },
+  {
+    "description": "Insider threat — high-risk event 3/5",
+    "scenario": "insider_threat",
+    "user_id": "demo_insider",
+    "event_type": "login",
+    "location": "China",
+    "device": "Unknown Device"
+  },
+  {
+    "description": "Insider threat — high-risk event 4/5",
+    "scenario": "insider_threat",
+    "user_id": "demo_insider",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Unknown Device"
+  },
+  {
+    "description": "Insider threat — high-risk event 5/5 triggers correlation",
+    "scenario": "insider_threat",
+    "expected": "Correlation alert: Potential Insider Threat for demo_insider",
+    "user_id": "demo_insider",
+    "event_type": "login",
+    "location": "China",
+    "device": "Unknown Device"
+  }
+]

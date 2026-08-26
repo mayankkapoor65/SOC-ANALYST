@@ -1,0 +1,84 @@
+[
+  {
+    "description": "Normal business-hours login from known device",
+    "user_id": "alice",
+    "event_type": "login",
+    "location": "India",
+    "device": "Laptop",
+    "expected_behavior": "normal"
+  },
+  {
+    "description": "Normal mobile login during work hours",
+    "user_id": "bob",
+    "event_type": "login",
+    "location": "USA",
+    "device": "Mobile",
+    "expected_behavior": "normal"
+  },
+  {
+    "description": "High-frequency activity — multiple rapid logins",
+    "user_id": "charlie",
+    "event_type": "login",
+    "location": "India",
+    "device": "Laptop",
+    "expected_behavior": "high_frequency",
+    "repeat": 8
+  },
+  {
+    "description": "Unusual login hour — 3 AM access",
+    "user_id": "diana",
+    "event_type": "login",
+    "location": "India",
+    "device": "Laptop",
+    "expected_behavior": "unusual_hour",
+    "login_hour": 3
+  },
+  {
+    "description": "New device event — unknown device type",
+    "user_id": "alice",
+    "event_type": "login",
+    "location": "India",
+    "device": "Unknown Device",
+    "expected_behavior": "new_device"
+  },
+  {
+    "description": "High-risk location with unknown device — outlier",
+    "user_id": "eve",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Unknown Device",
+    "expected_behavior": "outlier"
+  },
+  {
+    "description": "Failed login pattern — elevated risk event",
+    "user_id": "frank",
+    "event_type": "failed_login",
+    "location": "China",
+    "device": "Unknown Device",
+    "expected_behavior": "outlier"
+  },
+  {
+    "description": "Baseline deviation — login from new location",
+    "user_id": "alice",
+    "event_type": "login",
+    "location": "China",
+    "device": "Laptop",
+    "expected_behavior": "baseline_deviation"
+  },
+  {
+    "description": "Normal evening login",
+    "user_id": "grace",
+    "event_type": "login",
+    "location": "USA",
+    "device": "Mobile",
+    "expected_behavior": "normal"
+  },
+  {
+    "description": "ML outlier candidate — extreme risk combination",
+    "user_id": "hacker",
+    "event_type": "login",
+    "location": "Russia",
+    "device": "Unknown Device",
+    "expected_behavior": "ml_outlier"
+  }
+]

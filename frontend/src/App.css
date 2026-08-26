@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+.dashboard {
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: #94a3b8;
+}
+
+.dashboard h1 {
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.dashboard p {
+  color: #94a3b8;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.chart-section {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.chart-section h2 {
+  color: #38bdf8;
+  margin-bottom: 20px;
+}
+
+.error-banner {
+  background: #7f1d1d;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+button {
+  background: #38bdf8;
+  color: #0f172a;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 36px;
+}
+
+.total {
+  background: #1e293b;
+}
+
+.high {
+  background: #7f1d1d;
+}
+
+.medium {
+  background: #78350f;
+}
+
+.low {
+  background: #14532d;
+}
+
+.loading-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.events-section {
+  margin-top: 40px;
+}
+
+.events-section h2 {
+  color: #38bdf8;
+  margin-bottom: 20px;
+}
+
+.events-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.events-table th {
+  background: #0f172a;
+  padding: 15px;
+  text-align: left;
+}
+
+.events-table td {
+  padding: 15px;
+  border-top: 1px solid #334155;
+}
+
+.events-table tr:hover {
+  background: #334155;
+}
+
+.refresh-text {
+  color: #22c55e;
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+}
