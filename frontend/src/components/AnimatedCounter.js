@@ -16,7 +16,7 @@ export default function AnimatedCounter({ value, duration = 800, decimals = 0 })
       if (progress < 1) requestAnimationFrame(tick);
     };
 
-    requestAnimationFrame(tick);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, duration]);
 
   return (
